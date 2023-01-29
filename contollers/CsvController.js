@@ -63,12 +63,9 @@ module.exports.readCSv = async (req, res, next) => {
     fs.createReadStream(`./uploads/${Csv_file.fileName}`)
       .pipe(parse({ delimiter: "," }))
       .on("data", function (row) {
-        // console.log("row", row);
         file_data.push(row);
       })
       .on("end", function () {
-        // console.log("finished");
-        // console.log("file_data", file_data);
         return res.render("show_data", {
           data: file_data,
         });

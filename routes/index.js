@@ -12,7 +12,6 @@ const router = Router();
 router.get("/", home);
 
 router.post("/upload", upload.single("csv_file"), function (req, res) {
-  // return res.render('index',{});
   return res.redirect("back");
 });
 

@@ -12,13 +12,8 @@
 <body>
   <div class="container text-center mt-3">
     <form class="input-group g-2">
-      <!-- <span class="col"> -->
         <input style="width: 100px;" class="form-control" id="search-csv" type="search" placeholder="search(2nd column)..." />
-      <!-- </span> -->
-      <!-- <span class="col"> -->
         <button class="btn btn-primary" id="search-complete">Search</button>
-      <!-- </span> -->
-      
     </form>
   </div>
 
@@ -58,73 +53,64 @@
     let serchSubEle = document.getElementById('search-complete');
     const CSVFileData =<%- JSON.stringify(data) %>
 
-
     function search(event) {
-      let value = event.target.value;
-      // console.log(value)
-      // event.preventDefault()
-      let tableData ="";
-      event.stopPropagation();
-      if (value != "") {
-        // document.getElementById('searh-data').innerHTML = ""
-       tableData +=
-        `<table class="table">
+          let value = event.target.value;
+          let tableData = "";
+          event.stopPropagation();
+          if (value != "") {
+            tableData +=
+              `<table class="table">
          <thead>
          <tr>`;
-        for (let col of CSVFileData.slice(0, 1)) {
-          for (let j of col) {
-            tableData += `<th scope="col">${j}</th>`
-          }
-        }
-        tableData += `</tr>
+            for (let col of CSVFileData.slice(0, 1)) {
+              for (let j of col) {
+                tableData += `<th scope="col">${j}</th>`
+              }
+            }
+            tableData += `</tr>
           </thead>
           <tbody class="table-group-divider">`
-        for (let i of CSVFileData.slice(1)) {
-          tableData += `<tr>`
-          let searchName = i[1].toLowerCase();
-          if (searchName.includes(value.toLowerCase())) {
-            for (let j of i) {
-              tableData += `<td>${j}</td>`
+            for (let i of CSVFileData.slice(1)) {
+              tableData += `<tr>`
+              let searchName = i[1].toLowerCase();
+              if (searchName.includes(value.toLowerCase())) {
+                for (let j of i) {
+                  tableData += `<td>${j}</td>`
+                }
+              }
             }
-          }
-        }
-        tableData += `</tbody>
+            tableData += `</tbody>
         </table>`
-        
-        document.getElementById('searh-data').innerHTML = tableData
-      }
-      else{
-        tableData +=
-        `<table class="table">
+            document.getElementById('searh-data').innerHTML = tableData
+          }
+          else {
+            tableData +=
+              `<table class="table">
          <thead>
          <tr>`
-        for (let col of CSVFileData.slice(0, 1)) {
-          for (let j of col) {
-            tableData += `<th scope="col">${j}</th>`
-          }
-        }
-        tableData += `</tr>
+            for (let col of CSVFileData.slice(0, 1)) {
+              for (let j of col) {
+                tableData += `<th scope="col">${j}</th>`
+              }
+            }
+            tableData += `</tr>
           </thead>
           <tbody class="table-group-divider">`
-        for (let i of CSVFileData.slice(1)) {
-          tableData += `<tr>`
-            for (let j of i) {
-              tableData += `<td>${j}</td>`
+            for (let i of CSVFileData.slice(1)) {
+              tableData += `<tr>`
+              for (let j of i) {
+                tableData += `<td>${j}</td>`
+              }
             }
-        }
-        tableData += `</tbody>
+            tableData += `</tbody>
         </table>`
-        
-        document.getElementById('searh-data').innerHTML = tableData
-      }
-
-    }
-
-    searchCsv.addEventListener('keyup', search);
-    serchSubEle.addEventListener('click', (e) => {
-      e.preventDefault();
-      // searchCsv.value = "";
-    })
+            document.getElementById('searh-data').innerHTML = tableData
+          }
+        }
+      searchCsv.addEventListener('keyup', search);
+      serchSubEle.addEventListener('click', (e) => {
+        e.preventDefault();
+      })
 
   </script>
 
