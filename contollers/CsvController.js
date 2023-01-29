@@ -3,6 +3,7 @@ const { parse } = require("csv-parse");
 const multer = require("multer");
 const CSV_model = require("../models/CSV_model");
 
+// frontend home page
 module.exports.home = async (req, res) => {
   let CSV_files = await CSV_model.find({});
   return res.render("index", {
@@ -11,6 +12,7 @@ module.exports.home = async (req, res) => {
   });
 };
 
+// to delete an uploaded csv file.
 module.exports.deleteFile = async (req, res) => {
   try {
     const { fileId } = req.params;
@@ -30,6 +32,8 @@ module.exports.deleteFile = async (req, res) => {
   }
 };
 
+// storing the uploaded csv file in uploads folder and saving the file name
+// in mongoDB databse for furthur usage.
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads");
@@ -55,6 +59,7 @@ const storage = multer.diskStorage({
   },
 });
 
+// reading the requested CSV file. 
 module.exports.readCSv = async (req, res, next) => {
   try {
     const { fileId } = req.params;
@@ -80,6 +85,7 @@ module.exports.readCSv = async (req, res, next) => {
   }
 };
 
+// checking the uploaded file is CSV file or not. 
 const csvFilter = (req, file, cb) => {
   if (file.mimetype.includes("csv")) {
     cb(null, true);

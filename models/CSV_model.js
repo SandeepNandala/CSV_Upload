@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// creating a CSV model for storing the filename.
 const CSVSchema = new mongoose.Schema(
   {
     fileName: {

@@ -11,16 +11,18 @@
 
 <body>
   <div class="container text-center mt-3">
+    <!-- searching the data as per 2nd column  -->
     <form class="input-group g-2">
         <input style="width: 100px;" class="form-control" id="search-csv" type="search" placeholder="search(2nd column)..." />
         <button class="btn btn-primary" id="search-complete">Search</button>
     </form>
   </div>
-
+  <!-- displaying the data in tabular format. -->
   <div class="container mt-3" id="searh-data">
     <table class="table">
       <thead>
         <tr>
+          <!-- displaying the column headers -->
           <% for(let col of data.slice(0,1)) {%>
             <% for(let j of col){%>
               <th scope="col">
@@ -31,6 +33,7 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
+        <!-- displaying the rows data -->
         <% for(let i of data.slice(1)){%>
           <tr>
             <% for(let j of i){%>
@@ -48,11 +51,12 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
   <script>
-    let searchData = document.getElementById('searh-data');
-    let searchCsv = document.getElementById('search-csv');
-    let serchSubEle = document.getElementById('search-complete');
+    let searchData = document.getElementById('searh-data');//output data
+    let searchCsv = document.getElementById('search-csv');//search input 
+    let serchSubEle = document.getElementById('search-complete');//seach button
     const CSVFileData =<%- JSON.stringify(data) %>
 
+    // search function to display the matching rows.
     function search(event) {
           let value = event.target.value;
           let tableData = "";
@@ -107,7 +111,7 @@
             document.getElementById('searh-data').innerHTML = tableData
           }
         }
-      searchCsv.addEventListener('keyup', search);
+      searchCsv.addEventListener('keyup', search);//when a key is typed in search bar
       serchSubEle.addEventListener('click', (e) => {
         e.preventDefault();
       })
