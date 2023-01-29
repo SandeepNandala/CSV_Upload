@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended:false}));
 // set up view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
-
+app.use(express.static('assets'))//for stastic files(css,js,images...etc)
 
 app.use(cookieParser());
 app.use(require('./routes'));

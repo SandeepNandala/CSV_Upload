@@ -14,5 +14,8 @@ router.post('/upload',upload.single('csv_file'),function(req,res){
 
 router.get('/show-data/:fileId',readCSv);
 
+// router.get('/api/:fileId',)
+
+
 
 module.exports=router
