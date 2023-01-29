@@ -58,13 +58,15 @@
     function search(event) {
       let value = event.target.value;
       // console.log(value)
+      // event.preventDefault()
+      let tableData ="";
       event.stopPropagation();
       if (value != "") {
         // document.getElementById('searh-data').innerHTML = ""
-        let tableData = "";
+       tableData +=
         `<table class="table">
          <thead>
-         <tr>`
+         <tr>`;
         for (let col of CSVFileData.slice(0, 1)) {
           for (let j of col) {
             tableData += `<th scope="col">${j}</th>`
@@ -88,7 +90,7 @@
         document.getElementById('searh-data').innerHTML = tableData
       }
       else{
-        let tableData = "";
+        tableData +=
         `<table class="table">
          <thead>
          <tr>`
@@ -115,12 +117,13 @@
     }
 
     searchCsv.addEventListener('keyup', search);
-    // searchCsv.addEventListener('keypress', search);
-    serchSubEle.addEventListener('click', () => {
-      searchCsv.value = "";
+    serchSubEle.addEventListener('click', (e) => {
+      e.preventDefault();
+      // searchCsv.value = "";
     })
 
   </script>
+
 </body>
 
 </html>
