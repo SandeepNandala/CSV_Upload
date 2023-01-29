@@ -1,21 +1,23 @@
-const { Router } = require('express');
-const express=require('express');
-const { readCSv,upload,home } = require('../contollers/CsvController');
+const { Router } = require("express");
+const express = require("express");
+const {
+  readCSv,
+  upload,
+  home,
+  deleteFile,
+} = require("../contollers/CsvController");
 
+const router = Router();
 
-const router=Router();
+router.get("/", home);
 
-router.get('/',home);
+router.post("/upload", upload.single("csv_file"), function (req, res) {
+  // return res.render('index',{});
+  return res.redirect("back");
+});
 
-router.post('/upload',upload.single('csv_file'),function(req,res){
-    // return res.render('index',{});
-    return res.redirect('back');
-})
+router.get("/show-data/:fileId", readCSv);
 
-router.get('/show-data/:fileId',readCSv);
+router.get("/delete/:fileId", deleteFile);
 
-// router.get('/api/:fileId',)
-
-
-
-module.exports=router
+module.exports = router;
