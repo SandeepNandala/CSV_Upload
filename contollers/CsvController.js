@@ -7,7 +7,7 @@ const CSV_model = require("../models/CSV_model");
 module.exports.home = async (req, res) => {
   let CSV_files = await CSV_model.find({});
   return res.render("index", {
-    title: "Home page",
+    title: "CSV Upload",
     Uploaded_files: CSV_files,
   });
 };
